@@ -1,0 +1,35 @@
+.menu {
+  position: fixed;
+  top: 0;
+  height: 64px;
+  width: 100%;
+  background-color: #dc7313;
+  margin: 0;
+  padding: 0;
+  box-shadow: 0 4px 2px -2px gray;
+  display: flex;
+  justify-content: space-between;
+}
+li {
+  float: left;
+  height: 100%;
+  padding-left: 16px;
+  padding-right: 16px;
+  display: flex;
+  align-items: center;
+  list-style: none;
+  text-align: center;
+  color: whitesmoke;
+  cursor: pointer;
+}
+
+li:hover {
+  background-color: #a63109;
+}
+
+.brand,
+.brand:hover {
+  background-color: whitesmoke;
+  color: darkgray;
+  margin: 0;
+}
