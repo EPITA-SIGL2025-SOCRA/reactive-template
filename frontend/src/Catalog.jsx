@@ -35,6 +35,26 @@ function TractorBlock() {
   return <div className="catalog-item-block"></div>;
 }
 
+function RentButton() {
+  const [isRented, setRent] = React.useState(false);
+  function onRentClick() {
+    setRent(true);
+  }
+
+  const buttonText = isRented ? "Ajouté au panier" : "Réserver";
+
+  return (
+    <button
+      disabled={isRented}
+      onClick={() => {
+        onRentClick();
+      }}
+    >
+      {buttonText}
+    </button>
+  );
+}
+
 function TractorCard() {
   return (
     <div className="catalog-item">
@@ -45,7 +65,7 @@ function TractorCard() {
         <p>COMMUNE</p>
       </div>
       <div className="actions">
-        <button>Réserver</button>
+        <RentButton />
         <a>Détail...</a>
       </div>
     </div>

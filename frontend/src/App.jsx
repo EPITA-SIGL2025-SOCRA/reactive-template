@@ -1,4 +1,5 @@
 import React from "react";
+import { AppContext, reducer, initialState } from "./AppContext";
 import { Outlet, RouterProvider, createBrowserRouter } from "react-router-dom";
 import "./App.css";
 import { AppBar } from "./AppBar";
@@ -24,13 +25,16 @@ const router = createBrowserRouter([
 ]);
 
 function Layout() {
+  const [state, dispatch] = React.useReducer(reducer, initialState);
   return (
-    <div className="app">
-      <AppBar />
-      <main>
-        <Outlet />
-      </main>
-    </div>
+    <AppContext.Provider value={{ state, dispatch }}>
+      <div className="app">
+        <AppBar />
+        <main>
+          <Outlet />
+        </main>
+      </div>
+    </AppContext.Provider>
   );
 }
 
