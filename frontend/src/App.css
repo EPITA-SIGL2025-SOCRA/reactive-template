@@ -1,0 +1,12 @@
+:root {
+  --default-text-color: #526066;
+}
+
+.app {
+  color: var(--default-text-color);
+  width: fit-content;
+}
+
+.seedling {
+  color: green;
+}
