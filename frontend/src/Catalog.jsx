@@ -2,6 +2,7 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 import "./Catalog.css";
+import useAppContext from "./AppContext";
 
 function SearchByCommune() {
   return (
@@ -35,11 +36,15 @@ function TractorBlock() {
   return <div className="catalog-item-block"></div>;
 }
 
-function RentButton() {
-  const [isRented, setRent] = React.useState(false);
+function RentButton({ tractor }) {
+  const { state, dispatch } = useAppContext();
   function onRentClick() {
-    setRent(true);
+    dispatch({
+      type: "NEW_BASKET_ITEM",
+      item: tractor,
+    });
   }
+  const isRented = state.basket.find((t) => tractor.id === t.id);
 
   const buttonText = isRented ? "Ajouté au panier" : "Réserver";
 
@@ -56,16 +61,23 @@ function RentButton() {
 }
 
 function TractorCard() {
+  const tractor = {
+    id: 1,
+    commune: "Paris",
+    category: "tracteur agricole",
+    description: "Un exemple de description",
+    imageUrl: "https://touslestracteurs.com/images/Case_IH/CX90.jpg",
+  };
   return (
     <div className="catalog-item">
-      <img src="https://touslestracteurs.com/images/Case_IH/CX90.jpg" />
+      <img src={tractor.imageUrl} />
       <div className="content">
-        <span className="category">Une catégorie</span>
-        <p>Un exemple de description</p>
-        <p>COMMUNE</p>
+        <span className="category">{tractor.category}</span>
+        <p>{tractor.description}</p>
+        <p>{tractor.commune}</p>
       </div>
       <div className="actions">
-        <RentButton />
+        <RentButton tractor={tractor} />
         <a>Détail...</a>
       </div>
     </div>
